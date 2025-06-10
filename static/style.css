@@ -162,13 +162,22 @@ label {
 .edit-button:hover, .delete-button:hover {
     transform: scale(1.2); /* ⬆️ ホバーで少し拡大 */
 }
+/* 🎀 入力欄を完全に中央へ！ */
 .lyric-input {
-    width: 100%; /* ⬆️ 入力欄を最大化 */
-    font-size: 14px; /* ⬅️ フォントサイズは変更しない！ */
+    width: 80%; /* ⬆️ 横幅を調整してバランスよく */
+    font-size: 14px;
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #ffb6c1;
     background: rgba(255, 255, 255, 0.8);
-    margin: 0 auto; /* ⬆️ 中央に配置 */
-    text-align: center; /* ⬆️ テキストを中央揃え */
+    display: block;
+    margin: 0 auto; /* ⬆️ 確実に中央寄せ */
+}
+
+/* 🎀 親要素も中央揃えにする */
+.container {
+    text-align: center; /* ⬆️ フォーム全体を中央揃え */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
