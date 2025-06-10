@@ -169,4 +169,6 @@ label {
     border-radius: 10px;
     border: 2px solid #ffb6c1;
     background: rgba(255, 255, 255, 0.8);
+    margin: 0 auto; /* ⬆️ 中央に配置 */
+    text-align: center; /* ⬆️ テキストを中央揃え */
 }
