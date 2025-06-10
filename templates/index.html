@@ -20,18 +20,26 @@
     <div class="container">
         <h1>💖 aikoの好きな歌詞 💖</h1>
 
-        <!-- 曲名＆歌詞入力フォーム -->
-        <form method="POST">
-            <label>🎶 曲名を入力</label>
-            <input type="text" name="song" required>
-            <label>📝 歌詞を入力:</label>
-            <textarea name="lyric" rows="8" class="lyric-input" required></textarea>
+<form method="POST" id="lyrics-form" action="/add">
+    <label>🎶 曲名:</label>
+    <input type="text" name="song" id="song-input" required>
+    
+    <label>📝 歌詞:</label>
+    <textarea name="lyric" id="lyric-input" rows="5" required></textarea>
 
-            <button type="submit">💾 保存</button>
-        </form>
-    </div>
+    <input type="hidden" name="id" id="song-id">
+    
+    <button type="submit" id="save-button">💾 保存</button>
+</form>
 
-    <script>
+<script>
+    function editLyrics(id, song, lyric) {
+        document.getElementById("song-input").value = song;
+        document.getElementById("lyric-input").value = lyric;
+        document.getElementById("song-id").value = id;
+        document.getElementById("lyrics-form").action = "/edit/" + id;
+    }
+</script>
         function toggleMenu() {
             document.querySelector(".side-menu").classList.toggle("active");
         }

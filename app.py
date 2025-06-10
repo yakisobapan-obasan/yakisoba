@@ -32,19 +32,15 @@ def home():
     return render_template("index.html", lyrics=lyrics)
 
 # ✏️ 編集ページ
-@app.route("/edit/<int:id>", methods=["GET", "POST"])
+@app.route("/edit/<int:id>", methods=["POST"])
 def edit(id):
     conn = get_db_connection()
-    if request.method == "POST":
-        song = request.form["song"]
-        lyric = request.form["lyric"]
-        conn.execute("UPDATE lyrics SET song = ?, lyric = ? WHERE id = ?", (song, lyric, id))
-        conn.commit()
-        conn.close()
-        return redirect(url_for("home"))
-    lyric = conn.execute("SELECT * FROM lyrics WHERE id = ?", (id,)).fetchone()
+    song = request.form["song"]
+    lyric = request.form["lyric"]
+    conn.execute("UPDATE lyrics SET song = ?, lyric = ? WHERE id = ?", (song, lyric, id))
+    conn.commit()
     conn.close()
-    return render_template("edit.html", lyric=lyric)
+    return redirect(url_for("home"))
 
 # ❌ 削除機能
 @app.route("/delete/<int:id>", methods=["POST"])
