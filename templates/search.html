@@ -18,7 +18,7 @@
     </nav>
 
     <div class="container">
-        <h1>🔍 歌詞検索 🌸</h1>
+        <h1>🔍 歌詞検索 </h1>
         
         <form method="GET" action="/search">
             <label>📜 曲名またはワードを入力:</label>
@@ -26,23 +26,24 @@
             <button type="submit">🔎 検索</button>
         </form>
 
-        <h2>🎵 検索結果 🎀</h2>
-        <div class="lyrics-list">
-            {% if lyrics %}
-                {% for item in lyrics %}
-                <div class="lyric-card">
-                    <h2>🎶 {{ item.song }}</h2>
-                    <p>{{ item.lyric }}</p>
-                    <div class="button-group">
-                        <a href="{{ url_for('edit', id=item.id) }}" class="edit-button">✏️ 編集</a>
-                    </div>
+       <h2>🎵 検索結果 </h2>
+    {% if query %}  <!-- 検索が実行されたら表示！ -->
+    <div class="lyrics-list">
+        {% if lyrics %}
+            {% for item in lyrics %}
+            <div class="lyric-card">
+                <h2>🎶 {{ item.song }}</h2>
+                <p>{{ item.lyric }}</p>
+                <div class="button-group">
+                    <a href="{{ url_for('edit', id=item.id) }}" class="edit-button">✏️</a>
                 </div>
-                {% endfor %}
-            {% else %}
-                <p>該当する歌詞が見つかりませんでした💦</p>
-            {% endif %}
-        </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>該当する歌詞が見つかりませんでした💦</p>
+        {% endif %}
     </div>
+    {% endif %}  <!-- 検索前は結果を非表示！ -->
 
     <script>
         function toggleMenu() {

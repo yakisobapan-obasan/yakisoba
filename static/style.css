@@ -131,37 +131,34 @@ label {
     font-size: 14px; /* ⬇️ 文字サイズを調整 */
     line-height: 1.6; /* 🌸 読みやすい行間を設定 */
 }
-/* ✏️ 編集ボタン（小さめ＆可愛く調整） */
-.edit-button {
-    padding: 8px 12px; /* ⬇️ 少し小さめに */
-    border-radius: 20px;
-    font-size: 13px; /* ⬇️ コンパクトに */
-    background: linear-gradient(45deg, #ffadc6, #ffccd5);
-    font-family: "Pacifico", cursive;
-    text-decoration: none;
-    box-shadow: 4px 4px 10px rgba(255, 150, 150, 0.4);
-    transition: all 0.3s ease-in-out;
+/* ✏️ 編集＆削除ボタン（絵文字のみ＆タイトルの横） */
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
 }
 
-.edit-button:hover {
-    background: linear-gradient(45deg, #ff758c, #ff7eb3);
-    transform: scale(1.1);
-    box-shadow: 5px 5px 12px rgba(255, 150, 150, 0.6);
+.title-text {
+    font-size: 24px;
+    color: #ff69b4;
 }
 
-/* ❌ 削除ボタン（小さめ＆可愛く調整） */
-.delete-button {
-    padding: 8px 12px; /* ⬇️ 少し小さめに */
-    border-radius: 20px;
-    font-size: 13px; /* ⬇️ コンパクトに */
-    background: linear-gradient(45deg, #ff758c, #ff7eb3);
-    font-family: "Pacifico", cursive;
-    box-shadow: 4px 4px 10px rgba(255, 150, 150, 0.4);
-    transition: all 0.3s ease-in-out;
+.action-buttons {
+    display: flex;
+    gap: 10px;
 }
 
-.delete-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(45deg, #ff5678, #ff85a2);
-    box-shadow: 5px 5px 12px rgba(255, 150, 150, 0.6);
+.edit-button, .delete-button {
+    font-size: 16px; /* ⬇️ コンパクトに */
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background: none; /* ⬅️ 背景なし */
+    text-decoration: none; /* ⬅️ 文字なし（絵文字のみ） */
+}
+
+.edit-button:hover, .delete-button:hover {
+    transform: scale(1.2); /* ⬆️ ホバーで少し拡大 */
 }
