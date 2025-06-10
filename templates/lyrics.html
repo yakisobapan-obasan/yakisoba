@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎵 保存された歌詞一覧 🎀</title>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <nav class="top-nav">
+    <!-- 🌟 メニューアイコン（ホームと統一！） -->
+    <div class="menu-icon" onclick="toggleMenu()">😐</div>
+
+    <!-- 🌸 サイドメニュー（ホームと同じ） -->
+    <nav class="side-menu">
         <a href="/" class="nav-button">🏠 ホーム</a>
         <a href="/search" class="nav-button">🔍 検索</a>
         <a href="/lyrics" class="nav-button active">🎵 歌詞一覧</a>
     </nav>
 
     <div class="container">
-        <h1>🌸 保存された歌詞一覧 🌸</h1>
-        <table class="lyrics-table">
-            <tr>
-                <th>🎶 曲名</th>
-                <th>📝 歌詞</th>
-                <th>✏️ 編集</th>
-                <th>❌ 削除</th>
-            </tr>
+        <h1>🎀保存された歌詞</h1>
+        
+        <div class="lyrics-list">
             {% for item in lyrics %}
-            <tr>
-                <td>{{ item.song }}</td>
-                <td>{{ item.lyric }}</td>
-                <td><a href="{{ url_for('edit', id=item.id) }}" class="edit-button">編集する</a></td>
-                <td>
+            <div class="lyric-card">
+                <h2>🎶 {{ item.song }}</h2>
+                <p>{{ item.lyric }}</p>
+                <div class="button-group">
+                    <a href="{{ url_for('edit', id=item.id) }}" class="edit-button">✏️ 編集</a>
                     <form method="POST" action="{{ url_for('delete', id=item.id) }}">
-                        <button type="submit" class="delete-button">削除</button>
+                        <button type="submit" class="delete-button">❌ 削除</button>
                     </form>
-                </td>
-            </tr>
+                </div>
+            </div>
             {% endfor %}
-        </table>
+        </div>
     </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".side-menu").classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
