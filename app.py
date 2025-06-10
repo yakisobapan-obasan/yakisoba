@@ -67,5 +67,8 @@ def api_lyrics():
     conn.close()
     return jsonify([dict(row) for row in lyrics])
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))  # Render用のポート設定
+    app.run(host="0.0.0.0", port=port, debug=True)
