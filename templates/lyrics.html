@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 保存された歌詞一覧 🎀</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="nav-button">🏠 ホーム</a>
+        <a href="/search" class="nav-button">🔍 検索</a>
+        <a href="/lyrics" class="nav-button active">🎵 歌詞一覧</a>
+    </nav>
+
+    <div class="container">
+        <h1>🌸 保存された歌詞一覧 🌸</h1>
+        <table class="lyrics-table">
+            <tr>
+                <th>🎶 曲名</th>
+                <th>📝 歌詞</th>
+                <th>✏️ 編集</th>
+                <th>❌ 削除</th>
+            </tr>
+            {% for item in lyrics %}
+            <tr>
+                <td>{{ item.song }}</td>
+                <td>{{ item.lyric }}</td>
+                <td><a href="{{ url_for('edit', id=item.id) }}" class="edit-button">編集する</a></td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete', id=item.id) }}">
+                        <button type="submit" class="delete-button">削除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
