@@ -94,3 +94,14 @@ def styles():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port, debug=True)
+
+# 🎵 歌詞の追加（POST専用）
+@app.route("/add", methods=["POST"])
+def add():
+    conn = get_db_connection()
+    song = request.form["song"]
+    lyric = request.form["lyric"]
+    conn.execute("INSERT INTO lyrics (song, lyric) VALUES (?, ?)", (song, lyric))
+    conn.commit()
+    conn.close()
+    return redirect(url_for("home"))
