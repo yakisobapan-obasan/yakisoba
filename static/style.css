@@ -1,72 +1,70 @@
 body {
-    font-family: "Poppins", "Pacifico", cursive;
-    background: linear-gradient(#ffd1dc, #fff0f5);
+    font-family: "Pacifico", cursive;
+    background: linear-gradient(#ffe4e1, #ffb6c1, #ffd1dc);
     text-align: center;
-    padding: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
 h1 {
     color: #ffffff;
-    font-size: 28px;
-    text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.8);
+    font-size: 30px;
+    text-shadow: 3px 3px 10px rgba(255, 150, 150, 0.6);
 }
 
+/* 💖 中央配置＆ふわふわフォーム */
 form {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(255, 150, 150, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 40px;
+    box-shadow: 6px 6px 18px rgba(255, 150, 150, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: auto;
 }
 
+/* 🌸 ふんわりボタン */
 button {
     background: linear-gradient(45deg, #ffadc6, #ffccd5);
     color: white;
-    padding: 12px 25px;
+    padding: 12px 30px;
     border: none;
-    border-radius: 30px;
-    box-shadow: 5px 5px 15px rgba(255, 150, 150, 0.5);
+    border-radius: 50px;
+    box-shadow: 8px 8px 20px rgba(255, 150, 150, 0.4);
     font-size: 18px;
     font-family: "Pacifico", cursive;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
-    position: relative;
 }
 
 button:hover {
     background: linear-gradient(45deg, #ff758c, #ff7eb3);
-    transform: scale(1.08);
-    box-shadow: 8px 8px 20px rgba(255, 150, 150, 0.7);
-}
-
-button::after {
-    content: "💖";
-    position: absolute;
-    right: -10px;
-    top: -5px;
-    font-size: 20px;
+    transform: scale(1.1);
+    box-shadow: 10px 10px 25px rgba(255, 150, 150, 0.6);
 }
 
 input, textarea {
+    display: block;
+    width: 80%;
     background-color: #FFC0CB;
     border: 2px solid #FF69B4;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 10px rgba(255, 182, 193, 0.5);
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px rgba(255, 182, 193, 0.4);
     font-size: 16px;
+    margin: 10px auto;
+    text-align: center;
 }
 
+/* 📜 やわらかいラベル */
 label {
     display: block;
-    background-color: #FFC0CB;
-    padding: 8px;
-    border-radius: 12px;
-    font-family: "Pacifico", cursive;
-}
-
-textarea {
-    width: 100%;
-    height: 200px;
-    font-size: 16px;
+    background-color: rgba(255, 192, 203, 0.8);
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 20px;
+    font-family: "Pacifico", cursive;
 }
