@@ -1,10 +1,10 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import os
 
 app = Flask(__name__)
 
-# データベース接続（なければ自動作成）
+# 🎵 データベース接続（なければ自動作成）
 def get_db_connection():
     conn = sqlite3.connect("lyrics.db")
     conn.row_factory = sqlite3.Row
@@ -18,7 +18,7 @@ def get_db_connection():
     conn.commit()
     return conn
 
-# ホームページ（歌詞の表示 & 保存）
+# 🏠 ホームページ（歌詞の表示 & 保存）
 @app.route("/", methods=["GET", "POST"])
 def home():
     conn = get_db_connection()
@@ -30,7 +30,8 @@ def home():
     lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
     conn.close()
     return render_template("index.html", lyrics=lyrics)
-# 🎵 編集ページ
+
+# ✏️ 編集ページ
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     conn = get_db_connection()
@@ -45,7 +46,7 @@ def edit(id):
     conn.close()
     return render_template("edit.html", lyric=lyric)
 
-# ❌ 削除機能（編集のすぐ下に追加）
+# ❌ 削除機能
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
     conn = get_db_connection()
@@ -54,7 +55,7 @@ def delete(id):
     conn.close()
     return redirect(url_for("home"))
 
-# 🔍 検索ページ（home() の後に配置）
+# 🔍 検索ページ
 @app.route("/search", methods=["GET"])
 def search():
     query = request.args.get("query", "")
@@ -63,7 +64,7 @@ def search():
     conn.close()
     return render_template("search.html", lyrics=lyrics, query=query)
 
-# 🎵 歌詞一覧ページ（search() の後に配置）
+# 🎵 歌詞一覧ページ
 @app.route("/lyrics")
 def lyrics():
     conn = get_db_connection()
@@ -71,22 +72,7 @@ def lyrics():
     conn.close()
     return render_template("lyrics.html", lyrics=lyrics)
 
-# 編集機能（可愛いボタン追加）
-@app.route("/edit/<int:id>", methods=["GET", "POST"])
-def edit(id):
-    conn = get_db_connection()
-    if request.method == "POST":
-        song = request.form["song"]
-        lyric = request.form["lyric"]
-        conn.execute("UPDATE lyrics SET song = ?, lyric = ? WHERE id = ?", (song, lyric, id))
-        conn.commit()
-        conn.close()
-        return redirect(url_for("home"))
-    lyric = conn.execute("SELECT * FROM lyrics WHERE id = ?", (id,)).fetchone()
-    conn.close()
-    return render_template("edit.html", lyric=lyric)
-
-# スタイリング（ふわふわボタン）
+# 🌸 スタイリング（ふわふわボタン）
 @app.route("/style.css")
 def styles():
     return """
@@ -108,7 +94,7 @@ def styles():
     }
     """
 
-# ポート設定
+# 🚀 ポート設定
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port, debug=True)
