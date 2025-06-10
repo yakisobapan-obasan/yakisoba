@@ -30,6 +30,22 @@ def home():
     lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
     conn.close()
     return render_template("index.html", lyrics=lyrics)
+# 🔍 検索ページ（home() の後に配置）
+@app.route("/search", methods=["GET"])
+def search():
+    query = request.args.get("query", "")
+    conn = get_db_connection()
+    lyrics = conn.execute("SELECT * FROM lyrics WHERE song LIKE ? OR lyric LIKE ?", ('%' + query + '%', '%' + query + '%')).fetchall()
+    conn.close()
+    return render_template("search.html", lyrics=lyrics, query=query)
+
+# 🎵 歌詞一覧ページ（search() の後に配置）
+@app.route("/lyrics")
+def lyrics():
+    conn = get_db_connection()
+    lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
+    conn.close()
+    return render_template("lyrics.html", lyrics=lyrics)
 
 # 編集機能（可愛いボタン追加）
 @app.route("/edit/<int:id>", methods=["GET", "POST"])

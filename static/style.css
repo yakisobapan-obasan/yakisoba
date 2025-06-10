@@ -7,50 +7,52 @@ body {
     overflow: hidden;
 }
 
-/* 🌟 メニューアイコン */
+/* 🌟 メニューアイコン（右上に配置＆サイズ調整） */
 .menu-icon {
     position: absolute;
     top: 10px;
-    left: 15px;
-    font-size: 26px;
-    padding: 12px;
+    right: 15px; /* ⬅️ 右上に移動！ */
+    font-size: 22px; /* ⬇️ サイズを少し小さめに */
+    padding: 8px;
     background: linear-gradient(45deg, #ffadc6, #ffccd5);
     color: white;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 4px 4px 12px rgba(255, 150, 150, 0.5);
+    box-shadow: 3px 3px 8px rgba(255, 150, 150, 0.4);
     transition: all 0.3s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* ✨ ホバーアニメーション */
 .menu-icon:hover {
     transform: scale(1.1);
     background: linear-gradient(45deg, #ff758c, #ff7eb3);
 }
 
-/* 🌸 ナビメニュー（デフォルトは非表示） */
+/* 🌟 ナビメニュー（デフォルトは非表示） */
 .side-menu {
+    display: none;
     position: absolute;
     top: 50px;
-    left: -200px;
-    width: 180px;
+    right: 15px; /* ⬅️ 右に配置！ */
+    width: 160px; /* ⬇️ ナビを少しコンパクトに */
     background: rgba(255, 192, 203, 0.9);
-    padding: 15px;
+    padding: 12px;
     border-radius: 20px;
-    transition: left 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .side-menu.active {
-    left: 15px;
+    display: block;
 }
 
 /* 📜 ナビゲーションボタン */
 .nav-button {
     display: block;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 8px 0;
+    padding: 8px;
     color: white;
     text-decoration: none;
     border-radius: 10px;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 歌詞検索 🎀</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="nav-button">🏠 ホーム</a>
+        <a href="/search" class="nav-button active">🔍 検索</a>
+        <a href="/lyrics" class="nav-button">🎵 歌詞一覧</a>
+    </nav>
+
+    <div class="container">
+        <h1>🔍 歌詞検索 🌸</h1>
+        <form method="GET" action="/search">
+            <label>📜 曲名またはワードを入力:</label>
+            <input type="text" name="query" required>
+            <button type="submit">🔎 検索</button>
+        </form>
+
+        <h2>🎵 検索結果 🎀</h2>
+        {% if lyrics %}
+        <ul class="search-results">
+            {% for item in lyrics %}
+            <li><strong>{{ item.song }}</strong>: {{ item.lyric }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>該当する歌詞が見つかりませんでした💦</p>
+        {% endif %}
+    </div>
+</body>
+</html>
