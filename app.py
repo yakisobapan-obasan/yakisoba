@@ -1,12 +1,21 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+import os
 
 app = Flask(__name__)
 
-# データベース接続
+# データベース接続（なければ自動作成）
 def get_db_connection():
     conn = sqlite3.connect("lyrics.db")
     conn.row_factory = sqlite3.Row
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS lyrics (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            song TEXT NOT NULL,
+            lyric TEXT NOT NULL
+        )
+    """)
+    conn.commit()
     return conn
 
 # ホームページ（歌詞の表示 & 保存）
@@ -22,20 +31,7 @@ def home():
     conn.close()
     return render_template("index.html", lyrics=lyrics)
 
-# 検索機能
-@app.route("/search", methods=["GET"])
-def search():
-    query = request.args.get("query")
-    conn = get_db_connection()
-    lyrics = conn.execute(
-        "SELECT * FROM lyrics WHERE song LIKE ? OR lyric LIKE ?",
-        ('%' + query + '%', '%' + query + '%')
-    ).fetchall()
-    conn.close()
-    return render_template("index.html", lyrics=lyrics)
-
-
-# 編集機能（歌詞を取得）
+# 編集機能（可愛いボタン追加）
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     conn = get_db_connection()
@@ -50,25 +46,29 @@ def edit(id):
     conn.close()
     return render_template("edit.html", lyric=lyric)
 
-# 削除機能
-@app.route("/delete/<int:id>", methods=["POST"])
-def delete(id):
-    conn = get_db_connection()
-    conn.execute("DELETE FROM lyrics WHERE id = ?", (id,))
-    conn.commit()
-    conn.close()
-    return redirect(url_for("home"))
+# スタイリング（ふわふわボタン）
+@app.route("/style.css")
+def styles():
+    return """
+    .cute-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background: linear-gradient(45deg, #ff9aa2, #ffb7b2);
+        border-radius: 30px;
+        box-shadow: 3px 3px 10px rgba(255, 150, 150, 0.5);
+        font-family: 'Pacifico', cursive;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+    .cute-button:hover {
+        background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        transform: scale(1.05);
+    }
+    """
 
-# API（JSON形式でデータ取得）
-@app.route("/api/lyrics", methods=["GET"])
-def api_lyrics():
-    conn = get_db_connection()
-    lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
-    conn.close()
-    return jsonify([dict(row) for row in lyrics])
-
-import os
-
+# ポート設定
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Render用のポート設定
+    port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port, debug=True)

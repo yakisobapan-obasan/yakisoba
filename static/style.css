@@ -1,45 +1,72 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FFE4E1;
+    font-family: "Poppins", "Pacifico", cursive;
+    background: linear-gradient(#ffd1dc, #fff0f5);
     text-align: center;
+    padding: 20px;
 }
+
 h1 {
     color: #ffffff;
+    font-size: 28px;
+    text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.8);
 }
+
 form {
     background: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-button {
-    background-color: #FF69B4; /* ピンクボタン */
-    color: white; /* 文字は白に */
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 18px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(255, 150, 150, 0.5);
 }
 
+button {
+    background: linear-gradient(45deg, #ffadc6, #ffccd5);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 5px 5px 15px rgba(255, 150, 150, 0.5);
+    font-size: 18px;
+    font-family: "Pacifico", cursive;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    transform: scale(1.08);
+    box-shadow: 8px 8px 20px rgba(255, 150, 150, 0.7);
+}
+
+button::after {
+    content: "💖";
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    font-size: 20px;
+}
 
 input, textarea {
-    background-color: #FFC0CB; /* かわいいピンク背景 */
-    border: 2px solid #FF69B4; /* ピンクの枠線 */
+    background-color: #FFC0CB;
+    border: 2px solid #FF69B4;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 10px rgba(255, 182, 193, 0.5);
+    font-size: 16px;
 }
+
 label {
-    display: block; /* ラベルをボックスとして表示 */
-    background-color: #FFC0CB; /* かわいいピンク背景 */
-    padding: 5px;
-    border-radius: 10px;
+    display: block;
+    background-color: #FFC0CB;
+    padding: 8px;
+    border-radius: 12px;
+    font-family: "Pacifico", cursive;
 }
+
 textarea {
     width: 100%;
-    height: 200px; /* もっと大きくする */
-    font-size: 16px; /* 文字を見やすく */
+    height: 200px;
+    font-size: 16px;
     padding: 10px;
-    border: 2px solid #FF69B4; /* ピンクの枠 */
-    border-radius: 10px;
+    border-radius: 12px;
 }
