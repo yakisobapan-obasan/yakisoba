@@ -30,7 +30,7 @@
         {% for item in lyrics %}
         <div class="lyric-box">
             <p><strong>🎶 {{ item['song'] }}</strong>: {{ item['lyric'] }}</p>
-            <a href="/edit/{{ item['id'] }}">📝 編集</a>
+            <a href="/edit/{{ item['id'] }}">📝 編集</button>
             <form method="POST" action="/delete/{{ item['id'] }}">
                 <button type="submit">🗑️ 削除</button>
             </form>
