@@ -162,3 +162,11 @@ label {
 .edit-button:hover, .delete-button:hover {
     transform: scale(1.2); /* ⬆️ ホバーで少し拡大 */
 }
+.lyric-input {
+    width: 100%; /* ⬆️ 入力欄を最大化 */
+    font-size: 14px; /* ⬅️ フォントサイズは変更しない！ */
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ffb6c1;
+    background: rgba(255, 255, 255, 0.8);
+}
