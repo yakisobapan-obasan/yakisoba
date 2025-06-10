@@ -21,20 +21,22 @@
         <h1 class="title-text">🎀 保存された歌詞一覧 🎀</h1>
 
         <!-- 🎶 歌詞がある場合のみ表示 -->
-        {% for item in lyrics %}
-        <div class="lyric-card">
-            <div class="title-bar">
-                <h2>🎶 {{ item.song }}</h2>
-                <div class="action-buttons">
-                    <button class="edit-button" onclick="editLyrics('{{ item.id }}', '{{ item.song }}', '{{ item.lyric }}')">✏️</button>
-                    <form method="POST" action="{{ url_for('delete', id=item.id) }}">
-                        <button type="submit" class="delete-button">❌</button>
-                    </form>
+        {% if lyrics %}
+        <div class="lyrics-list">
+            {% for item in lyrics %}
+            <div class="lyric-card">
+                <div class="title-bar">
+                    <h2>🎶 {{ item.song }}</h2>
+                    <div class="action-buttons">
+                        <button class="edit-button" onclick="editLyrics('{{ item.id }}', '{{ item.song }}', '{{ item.lyric }}')">✏️</button>
+                        <form method="POST" action="{{ url_for('delete', id=item.id) }}">
+                            <button type="submit" class="delete-button">❌</button>
+                        </form>
+                    </div>
                 </div>
+                <p>{{ item.lyric }}</p>
             </div>
-            <p>{{ item.lyric }}</p>
-        </div>
-        {% endfor %}
+            {% endfor %}
         </div>
         {% else %}
             <p>保存された歌詞はまだありません💡✨</p>
@@ -44,6 +46,13 @@
     <script>
         function toggleMenu() {
             document.querySelector(".side-menu").classList.toggle("active");
+        }
+
+        function editLyrics(id, song, lyric) {
+            document.getElementById("song-input").value = song;
+            document.getElementById("lyric-input").value = lyric;
+            document.getElementById("song-id").value = id;
+            document.getElementById("lyrics-form").action = "/edit/" + id;
         }
     </script>
 </body>
