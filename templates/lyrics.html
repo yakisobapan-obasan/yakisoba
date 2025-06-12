@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <!-- 🌟 メニューアイコン（ホームと統一！） -->
     <div class="menu-icon" onclick="toggleMenu()">💖</div>
 
-    <!-- 🌸 サイドメニュー（ホームと同じ） -->
     <nav class="side-menu">
         <a href="/" class="nav-button">🏠 ホーム</a>
         <a href="/search" class="nav-button">🔍 検索</a>
@@ -20,7 +18,6 @@
     <div class="container">
         <h1 class="title-text">🎀 保存された歌詞一覧 🎀</h1>
 
-        <!-- 🎶 歌詞がある場合のみ表示 -->
         {% if lyrics %}
         <div class="lyrics-list">
             {% for item in lyrics %}
@@ -43,15 +40,27 @@
         {% endif %}
     </div>
 
+    <!-- 📝 編集フォーム（デフォルトは非表示） -->
+    <form id="lyrics-form" method="POST" action="" style="display: none;">
+        <input type="hidden" name="id" id="song-id">
+        <label>🎶 曲名:</label>
+        <input type="text" name="song" id="song-input" required>
+        <label>📜 歌詞:</label>
+        <textarea name="lyric" id="lyric-input" rows="5" required></textarea>
+        <button type="submit">💾 保存</button>
+    </form>
+
     <script>
         function toggleMenu() {
             document.querySelector(".side-menu").classList.toggle("active");
         }
 
         function editLyrics(id, song, lyric) {
+            document.getElementById("song-id").value = id;
             document.getElementById("song-input").value = song;
             document.getElementById("lyric-input").value = lyric;
-            document.getElementById("song-id").value = id;
+
+            document.getElementById("lyrics-form").style.display = "block"; // 🎀 フォーム表示！
             document.getElementById("lyrics-form").action = "/edit/" + id;
         }
     </script>

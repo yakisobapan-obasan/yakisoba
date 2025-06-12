@@ -1,3 +1,4 @@
+/* 🎀 背景スタイル */
 body {
     font-family: "Pacifico", cursive;
     background: linear-gradient(#ffe4e1, #ffb6c1, #ffd1dc);
@@ -7,12 +8,12 @@ body {
     overflow: hidden;
 }
 
-/* 🌟 メニューアイコン（右上に配置＆サイズ調整） */
+/* 🌟 メニューアイコン */
 .menu-icon {
     position: absolute;
     top: 10px;
-    right: 15px; /* ⬅️ 右上に移動！ */
-    font-size: 22px; /* ⬇️ サイズを少し小さめに */
+    right: 15px;
+    font-size: 22px;
     padding: 8px;
     background: linear-gradient(45deg, #ffadc6, #ffccd5);
     color: white;
@@ -25,19 +26,18 @@ body {
     justify-content: center;
 }
 
-/* ✨ ホバーアニメーション */
 .menu-icon:hover {
     transform: scale(1.1);
     background: linear-gradient(45deg, #ff758c, #ff7eb3);
 }
 
-/* 🌟 ナビメニュー（デフォルトは非表示） */
+/* 🌸 ナビメニュー */
 .side-menu {
     display: none;
     position: absolute;
     top: 50px;
-    right: 15px; /* ⬅️ 右に配置！ */
-    width: 160px; /* ⬇️ ナビを少しコンパクトに */
+    right: 15px;
+    width: 160px;
     background: rgba(255, 192, 203, 0.9);
     padding: 12px;
     border-radius: 20px;
@@ -59,6 +59,7 @@ body {
     background: linear-gradient(45deg, #ff758c, #ff7eb3);
 }
 
+/* 🎶 タイトル */
 h1 {
     color: #ffffff;
     font-size: 30px;
@@ -99,6 +100,7 @@ button:hover {
     box-shadow: 10px 10px 25px rgba(255, 150, 150, 0.6);
 }
 
+/* 🎀 入力欄 */
 input, textarea {
     display: block;
     width: 80%;
@@ -112,7 +114,7 @@ input, textarea {
     text-align: center;
 }
 
-/* 📜 やわらかいラベル */
+/* 📜 ラベル */
 label {
     display: block;
     background-color: rgba(255, 192, 203, 0.8);
@@ -120,18 +122,21 @@ label {
     border-radius: 20px;
     font-family: "Pacifico", cursive;
 }
+
+/* 🎶 歌詞カード */
 .lyric-card h2 {
     color: #ff69b4;
-    font-size: 18px; /* ⬇️ 文字サイズを調整 */
+    font-size: 18px;
     margin-bottom: 8px;
 }
 
 .lyric-card p {
     color: #333;
-    font-size: 14px; /* ⬇️ 文字サイズを調整 */
-    line-height: 1.6; /* 🌸 読みやすい行間を設定 */
+    font-size: 14px;
+    line-height: 1.6;
 }
-/* ✏️ 編集＆削除ボタン（絵文字のみ＆タイトルの横） */
+
+/* ✏️ 編集＆削除ボタン（統一） */
 .title-bar {
     display: flex;
     justify-content: space-between;
@@ -150,46 +155,17 @@ label {
     gap: 10px;
 }
 
+/* 🎀 編集＆削除ボタン（統一デザイン） */
 .edit-button, .delete-button {
-    font-size: 16px; /* ⬇️ コンパクトに */
+    font-size: 16px;
     padding: 5px;
     border: none;
     cursor: pointer;
-    background: none; /* ⬅️ 背景なし */
-    text-decoration: none; /* ⬅️ 文字なし（絵文字のみ） */
+    background: none;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
 .edit-button:hover, .delete-button:hover {
-    transform: scale(1.2); /* ⬆️ ホバーで少し拡大 */
-}
-/* 🎀 入力欄を完全に中央へ！ */
-.lyric-input {
-    width: 80%; /* ⬆️ 横幅を調整してバランスよく */
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #ffb6c1;
-    background: rgba(255, 255, 255, 0.8);
-    display: block;
-    margin: 0 auto; /* ⬆️ 確実に中央寄せ */
-}
-
-/* 🎀 親要素も中央揃えにする */
-.container {
-    text-align: center; /* ⬆️ フォーム全体を中央揃え */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.delete-button {
-    font-size: 16px; /* ✏️ 編集ボタンと同じサイズ */
-    padding: 5px; /* 🔍 ボタンの余白を統一 */
-    border: none;
-    cursor: pointer;
-    background: none; /* 🎀 背景なしで絵文字だけ */
-    text-decoration: none;
-}
-
-.delete-button:hover {
-    transform: scale(1.2); /* 🔥 ホバー時のアニメーション */
+    transform: scale(1.2);
 }
