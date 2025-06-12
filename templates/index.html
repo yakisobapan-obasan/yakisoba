@@ -20,26 +20,38 @@
     <div class="container">
         <h1>💖 aikoの好きな歌詞 💖</h1>
 
+        <!-- 🎵 歌詞投稿フォーム -->
         <form method="POST" id="lyrics-form" action="/add">
             <label>🎶 曲名:</label>
-            <input type="text" name="song" id="song-input" required>
+            <input type="text" name="song" required>
             
             <label>📝 歌詞:</label>
-            <textarea name="lyric" id="lyric-input" rows="5" required></textarea>
+            <textarea name="lyric" rows="5" required></textarea>
 
-            <input type="hidden" name="id" id="song-id">
-            
-            <button type="submit" id="save-button">💾 保存</button>
+            <button type="submit">💾 保存</button>
+        </form>
+
+        <!-- 📝 編集フォーム（デフォルト非表示） -->
+        <form id="edit-form" method="POST" action="" style="display: none;">
+            <input type="hidden" name="id" id="edit-song-id">
+            <label>🎶 曲名</label>
+            <input type="text" name="song" id="edit-song-input">
+            <label>📜 歌詞</label>
+            <textarea name="lyric" id="edit-lyric-input"></textarea>
+            <button type="submit">💾 保存</button>
         </form>
     </div>
 
-    <!-- 🎀 JavaScript (修正済み) -->
+    <!-- 🎀 JavaScript -->
     <script>
         function editLyrics(id, song, lyric) {
-            document.getElementById("song-input").value = song;
-            document.getElementById("lyric-input").value = lyric;
-            document.getElementById("song-id").value = id;
-            document.getElementById("lyrics-form").action = "/edit/" + id;
+            document.getElementById("edit-song-id").value = id;
+            document.getElementById("edit-song-input").value = song;
+            document.getElementById("edit-lyric-input").value = lyric;
+
+            // 🔄 フォームを表示＆送信先を設定
+            document.getElementById("edit-form").style.display = "block";
+            document.getElementById("edit-form").action = "/edit/" + id;
         }
 
         function toggleMenu() {

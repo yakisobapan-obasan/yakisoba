@@ -181,3 +181,15 @@ label {
     flex-direction: column;
     align-items: center;
 }
+.delete-button {
+    font-size: 16px; /* ✏️ 編集ボタンと同じサイズ */
+    padding: 5px; /* 🔍 ボタンの余白を統一 */
+    border: none;
+    cursor: pointer;
+    background: none; /* 🎀 背景なしで絵文字だけ */
+    text-decoration: none;
+}
+
+.delete-button:hover {
+    transform: scale(1.2); /* 🔥 ホバー時のアニメーション */
+}

@@ -4,9 +4,10 @@ import os
 
 app = Flask(__name__)
 DATABASE_PATH = os.path.join(os.getcwd(), "lyrics.db")
+
 # 🎵 データベース接続（なければ自動作成）
 def get_db_connection():
-    conn = sqlite3.connect("lyrics.db")
+    conn = sqlite3.connect(DATABASE_PATH)  # 修正: 正しいデータベースパスを利用
     conn.row_factory = sqlite3.Row
     conn.execute("""
         CREATE TABLE IF NOT EXISTS lyrics (
@@ -27,20 +28,30 @@ def home():
         lyric = request.form["lyric"]
         conn.execute("INSERT INTO lyrics (song, lyric) VALUES (?, ?)", (song, lyric))
         conn.commit()
+        conn.close()
+        return redirect(url_for("home"))  # 🔥 修正: POST後にリダイレクト
+
     lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
     conn.close()
     return render_template("index.html", lyrics=lyrics)
 
-# ✏️ 編集ページ
-@app.route("/edit/<int:id>", methods=["POST"])
+# ✏️ 編集ページ（GET対応）
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     conn = get_db_connection()
-    song = request.form["song"]
-    lyric = request.form["lyric"]
-    conn.execute("UPDATE lyrics SET song = ?, lyric = ? WHERE id = ?", (song, lyric, id))
-    conn.commit()
+    
+    if request.method == "POST":
+        song = request.form["song"]
+        lyric = request.form["lyric"]
+        conn.execute("UPDATE lyrics SET song = ?, lyric = ? WHERE id = ?", (song, lyric, id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for("home"))
+
+    # 🔍 GET リクエスト時は編集データを取得
+    lyric_data = conn.execute("SELECT * FROM lyrics WHERE id = ?", (id,)).fetchone()
     conn.close()
-    return redirect(url_for("home"))
+    return render_template("edit.html", lyric=lyric_data)
 
 # ❌ 削除機能
 @app.route("/delete/<int:id>", methods=["POST"])

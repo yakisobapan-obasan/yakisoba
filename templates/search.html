@@ -35,7 +35,7 @@
                 <h2>🎶 {{ item.song }}</h2>
                 <p>{{ item.lyric }}</p>
                 <div class="button-group">
-                    <a href="{{ url_for('edit', id=item.id) }}" class="edit-button">✏️</a>
+                    <button class="edit-button" onclick="editLyrics('{{ item.id }}', '{{ item.song }}', '{{ item.lyric }}')">✏️</button>
                 </div>
             </div>
             {% endfor %}
@@ -45,9 +45,30 @@
     </div>
     {% endif %}  <!-- 検索前は結果を非表示！ -->
 
+    <!-- 📝 編集フォーム（デフォルトは非表示） -->
+    <form id="edit-form" method="POST" action="" style="display: none;">
+        <input type="hidden" name="id" id="song-id">
+        <label>🎶 曲名</label>
+        <input type="text" name="song" id="song-input">
+        <label>📜 歌詞</label>
+        <textarea name="lyric" id="lyric-input"></textarea>
+        <button type="submit">💾 保存</button>
+    </form>
+
     <script>
         function toggleMenu() {
             document.querySelector(".side-menu").classList.toggle("active");
+        }
+
+        function editLyrics(id, song, lyric) {
+            // 🎶 フォームに既存データをセット
+            document.getElementById("song-id").value = id;
+            document.getElementById("song-input").value = song;
+            document.getElementById("lyric-input").value = lyric;
+            
+            // 🔄 フォームを表示＆送信先を設定
+            document.getElementById("edit-form").style.display = "block";
+            document.getElementById("edit-form").action = "/edit/" + id;
         }
     </script>
 </body>
