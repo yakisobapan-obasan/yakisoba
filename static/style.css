@@ -155,17 +155,59 @@ label {
     gap: 10px;
 }
 
-/* 🎀 編集＆削除ボタン（統一デザイン） */
+.delete-button {
+    font-size: 16px; /* ✏️ 編集ボタンと同じサイズ */
+    padding: 5px; /* 🔍 余白を統一 */
+    border: none;
+    cursor: pointer;
+    background-color: transparent; /* 🎀 背景を完全透明に */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.delete-button:hover {
+    transform: scale(1.2); /* 🔥 ホバー時のアニメーション */
+}
+
+/* 🎀 編集＆削除ボタンの統一 */
 .edit-button, .delete-button {
     font-size: 16px;
     padding: 5px;
     border: none;
     cursor: pointer;
-    background: none;
+    background-color: transparent; /* 🎀 背景なし */
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-button:hover, .delete-button:hover {
     transform: scale(1.2);
+}
+body {
+    overflow: auto; /* 🔥 スクロールを許可 */
+    height: auto; /* 📱 スマホでスクロールできるように */
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-button {
+    background: linear-gradient(45deg, #ffadc6, #ffccd5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 3px 3px 10px rgba(255, 150, 150, 0.5);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.page-button:hover {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    transform: scale(1.1);
 }

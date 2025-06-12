@@ -75,9 +75,15 @@ def search():
 @app.route("/lyrics")
 def lyrics():
     conn = get_db_connection()
-    lyrics = conn.execute("SELECT * FROM lyrics").fetchall()
+    
+    page = request.args.get("page", 1, type=int)  # 🏷️ 現在のページ番号を取得
+    per_page = 5  # 🎵 1ページの歌詞数を5件に設定
+    
+    # 🔍 ページネーション処理（LIMIT + OFFSET）
+    lyrics = conn.execute("SELECT * FROM lyrics ORDER BY id DESC LIMIT ? OFFSET ?", (per_page, (page - 1) * per_page)).fetchall()
+    
     conn.close()
-    return render_template("lyrics.html", lyrics=lyrics)
+    return render_template("lyrics.html", lyrics=lyrics, page=page)
 
 # 🌸 スタイリング（ふわふわボタン）
 @app.route("/style.css")
