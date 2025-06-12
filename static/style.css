@@ -178,7 +178,11 @@ label {
 .delete-button:hover {
     transform: scale(1.2); /* 🔥 ホバー時のアニメーション */
 }
-
+.action-buttons {
+    display: flex; /* 🎵 横並びにする */
+    gap: 15px; /* ✅ ボタン間の隙間を調整 */
+    align-items: center; /* 📏 高さを揃える */
+}
 
 /* 🎀 編集＆削除ボタンの統一 */
 .edit-button, .delete-button {
