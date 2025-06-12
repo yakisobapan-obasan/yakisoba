@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 
 app = Flask(__name__)
-
+DATABASE_PATH = os.path.join(os.getcwd(), "lyrics.db")
 # 🎵 データベース接続（なければ自動作成）
 def get_db_connection():
     conn = sqlite3.connect("lyrics.db")
