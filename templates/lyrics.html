@@ -39,11 +39,14 @@
         <!-- 🔽 ページネーションの追加 -->
         <div class="pagination">
             {% if page > 1 %}
-                <a href="{{ url_for('lyrics', page=page-1) }}" class="page-button">⬅️ 前のページ</a>
+                <a href="{{ url_for('lyrics', page=page-1) }}" class="page-button">⬅️ 前</a>
             {% endif %}
-            
-            <a href="{{ url_for('lyrics', page=page+1) }}" class="page-button">次のページ ➡️</a>
+
+            {% if lyrics|length == 5 %}  <!-- 🔥 5件表示されているなら次のページがあるはず！ -->
+                <a href="{{ url_for('lyrics', page=page+1) }}" class="page-button">次 ➡️</a>
+            {% endif %}
         </div>
+
 
         {% else %}
             <p>保存された歌詞はまだありません💡✨</p>

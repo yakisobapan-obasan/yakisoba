@@ -150,18 +150,24 @@ label {
     color: #ff69b4;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 10px;
+/* ✅ 削除ボタンの親要素の影響を完全排除 */
+.action-buttons form {
+    background: none; /* ✅ 背景を完全透明に */
+    box-shadow: none; /* ✅ 不要な影を削除 */
+    border: none; /* ✅ 白い枠を削除 */
+    padding: 0;
+    margin: 0;
+    display: inline-block; /* ✅ 不要な余白をなくす */
 }
 
+/* 🎀 削除ボタンの完全透明化 */
 .delete-button {
     font-size: 16px;
     padding: 5px;
-    border: none; /* ✅ 不要な枠を削除 */
+    border: none;
     background-color: transparent; /* ✅ 背景を完全透明に */
     box-shadow: none; /* ✅ 不要な影を削除 */
-    display: inline-flex; /* 🎀 絵文字を中央配置 */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
